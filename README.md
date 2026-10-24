@@ -319,10 +319,7 @@ Projeto_Compras_Publicas/
 │   └── processed/
 ├── docs/
 │   └── img/
-│       ├── 01_Sprints 0 à 3 Trello.png
-│       ├── 02_Sprints 0 à 3 Trello Tasks.png
-│       ├── 03_Sprints 4 à 7 Trello.png
-│       ├── 04_Sprints 4 à 7 Trello Tasks.png
+│       ├── sprints.png
 │       └── star_schema.png
 ├── powerbi/
 │   └── Dashboard_Compras_Publicas.pbix
@@ -330,9 +327,14 @@ Projeto_Compras_Publicas/
 │   ├── 01_criar_banco.sql
 │   └── 02_perguntas.sql
 ├── src/
+│   ├── __init__.py
+│   ├── banco.py
+│   ├── carregar.py
+│   ├── config.py
 │   ├── limpeza.py
-│   ├── montar_tabelas.py
-│   └── carregar.py
+│   └── montar_tabelas.py
+├── .env.example
+├── .gitignore
 └── README.md
 ```
 
