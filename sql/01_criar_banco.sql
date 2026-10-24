@@ -1,17 +1,16 @@
 -- 01_criar_banco.sql
 -- Criação das quatro dimensões e da tabela fato
--- comparavel: 1 = comparável; 0 = não comparável
 
 CREATE TABLE IF NOT EXISTS dim_orgao (
     sk_orgao INTEGER PRIMARY KEY,
-    cnpj_orgao VARCHAR(20) UNIQUE,
+    cnpj_orgao VARCHAR(20) NOT NULL UNIQUE,
     nome_orgao TEXT,
     poder VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS dim_fornecedor (
     sk_fornecedor INTEGER PRIMARY KEY,
-    ni_fornecedor VARCHAR(20) UNIQUE,
+    ni_fornecedor VARCHAR(20) NOT NULL UNIQUE,
     nome_fornecedor TEXT,
     tipo_pessoa VARCHAR(30),
     porte VARCHAR(50)
@@ -19,13 +18,13 @@ CREATE TABLE IF NOT EXISTS dim_fornecedor (
 
 CREATE TABLE IF NOT EXISTS dim_modalidade (
     sk_modalidade INTEGER PRIMARY KEY,
-    modalidade_id VARCHAR(20) UNIQUE,
+    modalidade_id VARCHAR(20) NOT NULL UNIQUE,
     nome_modalidade TEXT
 );
 
 CREATE TABLE IF NOT EXISTS dim_localidade (
     sk_localidade INTEGER PRIMARY KEY,
-    uf_sigla CHAR(2) UNIQUE,
+    uf_sigla CHAR(2) NOT NULL UNIQUE,
     uf_nome VARCHAR(100),
     regiao VARCHAR(30)
 );
@@ -48,9 +47,9 @@ CREATE TABLE IF NOT EXISTS fato_item_contratado (
     perfil_gasto VARCHAR(100),
     quantidade NUMERIC(18,4),
 
-    valor_unitario_estimado NUMERIC(18,2),
+    valor_unitario_estimado NUMERIC(18,4),
     valor_total_estimado NUMERIC(18,2),
-    valor_unitario_homologado NUMERIC(18,2),
+    valor_unitario_homologado NUMERIC(18,4),
     valor_total_homologado NUMERIC(18,2),
 
     comparavel SMALLINT NOT NULL
@@ -83,24 +82,12 @@ CREATE TABLE IF NOT EXISTS fato_item_contratado (
 
     CONSTRAINT ck_fato_valores
         CHECK (
-            (valor_unitario_estimado IS NULL
-                OR valor_unitario_estimado >= 0)
-            AND
-            (valor_total_estimado IS NULL
-                OR valor_total_estimado >= 0)
-            AND
-            (valor_unitario_homologado IS NULL
-                OR valor_unitario_homologado >= 0)
-            AND
-            (valor_total_homologado IS NULL
-                OR valor_total_homologado >= 0)
+            (valor_unitario_estimado IS NULL OR valor_unitario_estimado >= 0)
+            AND (valor_total_estimado IS NULL OR valor_total_estimado >= 0)
+            AND (valor_unitario_homologado IS NULL OR valor_unitario_homologado >= 0)
+            AND (valor_total_homologado IS NULL OR valor_total_homologado >= 0)
         ),
 
     CONSTRAINT ck_fato_dias_ciclo
         CHECK (dias_ciclo IS NULL OR dias_ciclo >= 0)
 );
-
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public'
-ORDER BY table_name;
