@@ -1,4 +1,4 @@
-# Projeto Compras Públicas
+﻿# Projeto Compras Públicas
 
 > Projeto avaliativo de Análise de Dados com Python e PostgreSQL — Módulo 2  
 > **Autora:** Caroline de Souza Cunha Lopes
@@ -251,7 +251,7 @@ O planejamento e o acompanhamento do projeto foram organizados no Trello. As ima
 
 ### Visão geral do Trello
 
-![Quadro geral do Trello](docs/img/0_Trello.png)
+![Quadro geral do Trello](docs/img/sprints.png)
 
 ### Sprints 0 a 3
 
