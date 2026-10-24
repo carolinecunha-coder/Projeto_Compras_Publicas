@@ -1,23 +1,21 @@
-/*
-Projeto Compras Públicas — Projeto Avaliativo Módulo 2
-Arquivo: sql/02_perguntas.sql
-
-As seis perguntas de negócio foram executadas e validadas no pgAdmin.
-A nomenclatura das colunas de saída corresponde à utilizada nos testes.
-
-comparavel = 1: item comparável
-comparavel = 0: item não comparável
-A economia é calculada apenas com itens comparáveis.
-*/
-
 /* =========================================================
    PERGUNTA 1 — ECONOMIA GLOBAL DO PODER PÚBLICO
    ========================================================= */
 
 SELECT
+    COUNT(*) AS total_itens,
+    
     COUNT(*) FILTER (
         WHERE comparavel = 1
     ) AS itens_comparaveis,
+
+    ROUND(
+        100.0 * COUNT(*) FILTER (
+            WHERE comparavel = 1
+        )
+        / NULLIF(COUNT(*), 0),
+        2
+    ) AS perc_itens_comparaveis,
 
     SUM(valor_total_estimado) FILTER (
         WHERE comparavel = 1
@@ -151,6 +149,7 @@ por_modalidade AS (
     SELECT
         d.nome_modalidade,
         COUNT(*) AS quantidade_itens,
+        COUNT(*) FILTER (WHERE f.comparavel = 1) AS itens_comparaveis,
         SUM(f.valor_total_homologado) AS valor_total_homologado,
         SUM(f.valor_total_estimado) FILTER (
             WHERE f.comparavel = 1
@@ -168,7 +167,13 @@ indicadores AS (
     SELECT
         nome_modalidade,
         quantidade_itens,
+        itens_comparaveis,
         valor_total_homologado,
+
+        ROUND(
+            100.0 * itens_comparaveis / NULLIF(quantidade_itens, 0),
+            2
+        ) AS perc_itens_comparaveis,
 
         100.0 * valor_total_homologado
         / NULLIF(
@@ -188,6 +193,8 @@ indicadores AS (
 SELECT
     i.nome_modalidade,
     i.quantidade_itens,
+    i.itens_comparaveis,
+    i.perc_itens_comparaveis,
     i.valor_total_homologado,
 
     ROUND(
@@ -216,6 +223,16 @@ ORDER BY i.valor_total_homologado DESC;
    Exibe órgãos com pelo menos cinco registros com ciclo calculado.
    ========================================================= */
 
+-- Resumo Geral do Ciclo (Medidas 11, 12 e 13 do Power BI)
+SELECT
+    COUNT(*) AS total_itens_base,
+    COUNT(dias_ciclo) AS itens_com_ciclo,
+    COUNT(*) - COUNT(dias_ciclo) AS itens_sem_ciclo,
+    ROUND(AVG(dias_ciclo), 1) AS media_dias_ciclo,
+    MAX(dias_ciclo) AS maior_ciclo_dias
+FROM public.fato_item_contratado;
+
+-- Detalhamento por Órgão (com mínimo de 5 ciclos válidos)
 SELECT
     d.nome_orgao,
     COUNT(f.dias_ciclo) AS quantidade_ciclos,
@@ -238,6 +255,7 @@ ORDER BY
 
 SELECT
     d.regiao,
+    COUNT(DISTINCT f.sk_orgao) AS qtd_unidades_compradoras,
     COUNT(*) AS quantidade_itens,
     SUM(f.valor_total_homologado) AS valor_total_homologado,
 
@@ -292,6 +310,7 @@ SELECT
     d.uf_sigla,
     d.uf_nome,
     d.regiao,
+    COUNT(DISTINCT f.sk_orgao) AS qtd_unidades_compradoras,
     COUNT(*) AS quantidade_itens,
     SUM(f.valor_total_homologado) AS valor_total_homologado,
 
@@ -323,8 +342,8 @@ SELECT
             )
         )
         / NULLIF(
-            SUM(f.valor_total_estimado) FILTER (
-                WHERE f.comparavel = 1
+            SUM(valor_total_estimado) FILTER (
+                WHERE comparavel = 1
             ),
             0
         ),
