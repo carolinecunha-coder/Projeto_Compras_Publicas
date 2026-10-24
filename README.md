@@ -9,7 +9,7 @@ O **Projeto Compras Públicas** transforma dados de contratações públicas em 
 
 O projeto responde às seis perguntas de negócio da Controladoria: economia global, concentração de fornecedores, eficácia por modalidade, duração do ciclo de compras, distribuição regional e perfil dos gastos. As conclusões devem ser interpretadas junto às regras de comparabilidade, qualidade dos dados e consultas SQL que produzem os indicadores.
 
-**Repositório:** [projeto-compras-publicas](https://github.com/carolinecunha-coder/projeto-compras-publicas)
+**Repositório:** [Projeto_Compras_Publicas](https://github.com/carolinecunha-coder/Projeto_Compras_Publicas)
 
 ## 2. Problema de negócio
 
@@ -272,8 +272,8 @@ Execute os comandos a partir da raiz do repositório. Confirme os nomes dos arqu
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/carolinecunha-coder/projeto-compras-publicas.git
-   cd projeto-compras-publicas
+   git clone https://github.com/carolinecunha-coder/Projeto_Compras_Publicas.git
+   cd Projeto_Compras_Publicas
    ```
 
 2. Crie e ative um ambiente virtual Python.
@@ -321,7 +321,7 @@ Antes de considerar a execução concluída:
 Estrutura de referência conforme os arquivos e caminhos documentados no projeto. Confirme os caminhos reais no GitHub antes da entrega; não inclua arquivos que não existam.
 
 ```text
-projeto-compras-publicas/
+Projeto_Compras_Publicas/
 ├── data/
 │   ├── raw/
 │   │   ├── compras.csv
