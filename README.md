@@ -253,17 +253,6 @@ O planejamento e o acompanhamento do projeto foram organizados no Trello. As ima
 
 ![Quadro geral do Trello](docs/img/sprints.png)
 
-### Sprints 0 a 3
-
-![Quadro das Sprints 0 a 3](docs/img/01_Sprints%200%20à%203%20Trello.png)
-
-![Tarefas das Sprints 0 a 3](docs/img/02_Sprints%200%20à%203%20Trello%20Tasks.png)
-
-### Sprints 4 a 7
-
-![Quadro das Sprints 4 a 7](docs/img/03_Sprints%204%20à%207%20Trello.png)
-
-![Tarefas das Sprints 4 a 7](docs/img/04_Sprints%204%20à%207%20Trello%20Tasks.png)
 
 ## 11. Como reproduzir o pipeline
 
