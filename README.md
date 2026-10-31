@@ -353,6 +353,14 @@ Projeto_Compras_Publicas/
 - **Modelo dimensional:** [`docs/img/star_schema.png`](docs/img/star_schema.png)
 - **Planejamento no Trello:** imagens na pasta [`docs/img/`](docs/img/)
 
+## 16. Vídeo de apresentação
+
+A apresentação demonstra o funcionamento do dashboard, os principais indicadores e as análises desenvolvidas no projeto.
+
+[▶ Assistir ao vídeo de apresentação — Projeto Compras Públicas](docs/video/Video_Editado_7min.mp4)
+
+
+
 ## Autoria
 
 **Caroline de Souza Cunha Lopes**  
