@@ -357,7 +357,7 @@ Projeto_Compras_Publicas/
 
 A apresentação demonstra o funcionamento do dashboard, os principais indicadores e as análises desenvolvidas no projeto.
 
-[▶ Assistir ao vídeo de apresentação — Projeto Compras Públicas](docs/video/Video_Editado_7min.mp4)
+- [Assistir ao vídeo de apresentação – Projeto Compras Públicas](https://drive.google.com/file/d/1W3XD4ALxX-y2qGn3zi0gzfiC-cSl4MVg/view?usp=sharing)
 
 
 
